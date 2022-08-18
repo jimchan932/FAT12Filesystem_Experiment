@@ -1,4 +1,4 @@
-#FAT12 文件系统
+# FAT12 文件系统
 
 ## 实验要求：
 自己实现一个操作系统，并支持FAT 12 文件系统， 实现函数open, read, write, close, 并支持命令 cd, pwd, ls, cat, echo。

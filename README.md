@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 style="text-align: center;"> 本科生实验报告 </h1>
 <br />
 实验课程： 操作系统
@@ -218,5 +219,4 @@ echo:
 之后我们测试一个大文本 （大小超过512 byte， 1 sector）的cat
 调用：
 ![alt text]./assets/test3.png)
-
 

@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-<h1 style="text-align: center;"> 本科生实验报告 </h1>
-<br />
-实验课程： 操作系统
-实验名称： 期末大作业：文件系统
-<br />
-专业名称： 网络空间安全
-<br />
-学生学号： 20337021
-<br />
-实验地点： 我的家
-<br />
-实验成绩：
-<br />
-报告时间：
-<br />
-<br />
+#FAT12 文件系统
 
 ## 实验要求：
 自己实现一个操作系统，并支持FAT 12 文件系统， 实现函数open, read, write, close, 并支持命令 cd, pwd, ls, cat, echo。
@@ -57,7 +41,7 @@ Large sector count                   0
 
 
 
-![alt text]./assets/sectorSizes.png) 
+<img src = "/assets/sectorSizes.png"> 
  如果一个文件大过一个簇的大小（512 bytes）， 那么就需要通过FAT 表找出它在512 bytes 以上的数据缩放在的簇的位置。注意FAT的文件系统都是链式分配的。我们现在讨论如何从一个在根目录里的目录项以及FAT表来获取文件数据。首先我们已知的一个文件名 name, 它有 8.3 格式（名，扩充）格式，需要转换成FAT长度位11的格式， 例如 "test.txt" => fat_name = "TEST    TXT"(如果是文件架的话，FAT格式最后三个格会为空）。通过逐一读取在根目录的目录项，直到找到一个目录项direntry, 符合direntry.name == fat_name。找出对应的目录项后，通过开始簇direntry.firstcluster 计算出对应FAT。注意到fat12 是使用12位来作为数据的地址。
  
  ```
@@ -92,7 +76,7 @@ first_sector_of_cluster = 33 + cluster - 2
 
 我门以下例子来讲解以下FAT 12 的原理：
 <br />
-![alt text]./assets/fat12Example.png)
+<img src = "/assets/fat12Example.png">
 
 从图中，File1.txt的逻辑扇区为2， 4，6 和 7。该文件的目录项的开始扇区FirstSector 为2， 也就是第一个数据扇区。在FAT表中，FAT表对应第2项的值为4，代表File1.txt的下一个数据扇区在逻辑扇区4。最后一个扇区为4，这是显然的因为图上FAT表第7项写着EOC。对于文件夹MyDir 也是类似的。
 注意到在文件的目录项里的Attributes 就是用来分别出它是文件还是根文件里。
@@ -100,7 +84,7 @@ first_sector_of_cluster = 33 + cluster - 2
 我使用的是open watcom 的C编译器, nasm x86汇编器, 以及qemu模拟处理器，实现操作系统，并以文件系统为主要开发点实现文件系统 open, read, write, close 主要函数，以及相关cd, ls, cat, echo的命令。
 
 在stage1文件夹里面定义了我们的引导程序boot.asm，它负责加载内核stage2.bin来执行。当中stage2.asm在根文件架里。在boot.asm里的load_kernel_loop 模块负责加载内核。
-![alt text]./assets/load_kernel_loop.png)
+<img src = "/assets/load_kernel_loop.png">
 
 在stage2文件夹里定义了stage2.bin的代码，其中要执行的是main.c的main函数里面的代码。
 其中所依赖的程序代码在：
@@ -119,34 +103,34 @@ shellCmd.c: 实现命令函指令cat, echo, cd, ls
 ### <span> 1. </span> x86.asm
 x86_Disk_Reset: 通过中断指令 int 13h, 中断号 AH = 00h 重置disk
 <br />
-![alt text]./assets/x86reset.png)
+<img src = "/assets/x86reset.png">
 
 <br />
 x86_Disk_Read: 通过中断指令 int 13h, 中断号 AH = 02h 读取扇区
 
-![alt text]./assets/x86write.png)
+<img src = "/assets/x86write.png">
 <br />
 x86_Disk_Write：
 通过中断指令 int 13h, 中断号 AH = 03h 写人扇区 
-![alt text]./assets/x86read.png)
+<img src = "/assets/x86read.png">
 <br />
 x86_Disk_GetDriveParams:
 通过中断指令 int 13h, 中断号 AH = 08h, 传递给参数 柱面，磁头，扇区的总数量。 
-![alt text]./assets/x86params.png)
+<img src = "/assets/x86params.png">
 <br />
 ### <span> 2. </span> disk.c
 我们有disk类，用来储存软盘 柱面，磁头，扇区的总数量。
 DISK_Initialize （初始化disk类）：
-![alt text]./assets/diskinitialize.png)
+<img src = "/assets/diskinitialize.png">
 Disk_WriteSectors: 
-![alt text]./assets/disk_write.png)
+<img src = "/assets/disk_write.png">
 DISK_ReadSectors：读取扇区
-![alt text]./assets/disk_read.png)
+<img src = "/assets/disk_read.png">
 DISK_LBA2CHS（从lba地址转换到chs)
-![alt text]./assets/lba2chs.png)
+<img src = "/assets/lba2chs.png">
 ### <span> 3. </span> fat.c
 目录项结构 (directory entry)
-![alt text]./assets/directoryentry.png)
+<img src = "/assets/directoryentry.png">
 FAT_File:  (对文件的信息)
 * Handler：文件处理
 * isDirectory: 是否文件架 
@@ -156,67 +140,67 @@ FAT_File:  (对文件的信息)
 * Size: 文件的byte大小
 
 attributes: 文件的性质，例如只有读权限 (FAT_ATTRIBUTE_READ_ONLY), 是否文件夹(FAT_ATTRIBUTE_DIRECTORY) 
-![alt text]./assets/fatfileandattributes.png)
+<img src = "/assets/fatfileandattributes.png">
 引导扇区结构：
-![alt text]./assets/bootsector.png)
+<img src = "/assets/bootsector.png">
 读取引导扇区和FAT表
-![alt text]./assets/readboot.png)
+<img src = "/assets/readboot.png">
 文件系统初始化：
-![alt text]./assets/fatinit.png)
+<img src = "/assets/fatinit.png">
 
 FAT_ClusterToLba:
-![alt text]./assets/fatclustertolba.png)
+<img src = "/assets/fatclustertolba.png">
 FAT_OpenEntry:
-![alt text]./assets/fatopenentry.png)
+<img src = "/assets/fatopenentry.png">
 
 <br />
 
 FAT_NextCluster:
-![alt text]./assets/fatnextcluster.png)
+<img src = "/assets/fatnextcluster.png">
 
 <br />
 
 FAT_Read:
-![alt text]./assets/fat_read.png)
+<img src = "/assets/fat_read.png">
 FAT_ReadEntry:
-![alt text]./assets/fatreadentry.png)
+<img src = "/assets/fatreadentry.png">
 FAT_Write:
-![alt text]./assets/fatwrite.png)
+<img src = "/assets/fatwrite.png">
 FAT_FindFile
-![alt text]./assets/fatfindfile.png)
+<img src = "/assets/fatfindfile.png">
 FAT_Open:
-![alt text]./assets/fatopen.png)
+<img src = "/assets/fatopen.png">
 
 ### <span> 4. </span> shellCmd.c
 ls:
-![alt text]./assets/commandls.png)
+<img src = "/assets/commandls.png">
 cd：
-![alt text]./assets/commandcd.png)
+<img src = "/assets/commandcd.png">
 cat:
-![alt text]./assets/commandcat.png)
+<img src = "/assets/commandcat.png">
 echo:
-![alt text]./assets/commandecho.png)
+<img src = "/assets/commandecho.png">
 转换文件名到fat格式的函数：
-![alt text]./assets/tofat.png)
+<img src = "/assets/tofat.png">
 转换fat格式到文件名的函数
-![alt text]./assets/toname.png)
+<img src = "/assets/toname.png">
 ## 实验演示
 在stage2文件夹的main.c 测试。
 ### 根文件：
-![alt text]./assets/roofile.png)
+<img src = "/assets/roofile.png">
 
 ### 测试1
-![alt text]./assets/firsttest.png)
-![alt text]./assets/test1.png)
+<img src = "/assets/firsttest.png">
+<img src = "/assets/test1.png">
 在这里演示的是cat 和 echo的命令，也就是读和写操作。从图中可看到文件内容从 “Original data from file!" 写成 "new data from text file"
 
 
 ### 测试2
-![alt text]./assets/secondtest.png)
-![alt text]./assets/test2.png)
+<img src = "/assets/secondtest.png">
+<img src = "/assets/test2.png">
 使用cd 进入文件夹mydir，ls列出所有文件夹里面的文件，并cat 输出里面的文件的内容
 ### 测试3
 之后我们测试一个大文本 （大小超过512 byte， 1 sector）的cat
 调用：
-![alt text]./assets/test3.png)
+<img src = "/assets/test3.png">
 

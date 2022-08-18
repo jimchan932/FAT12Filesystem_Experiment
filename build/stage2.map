@@ -1,0 +1,200 @@
+Open Watcom Linker Version 2.0 beta May 25 2022 00:47:14 (32-bit)
+Copyright (c) 2002-2022 The Open Watcom Contributors. All Rights Reserved.
+Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
+Created on:       22/06/03 15:09:09
+Warning! W1027: file /home/jimchan/Desktop/workingOS/build/stage2/c/filenameConversion.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/filenameConversion.c): redefinition of convertToFATFilename_ ignored
+Warning! W1027: file /home/jimchan/Desktop/workingOS/build/stage2/c/filenameConversion.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/filenameConversion.c): redefinition of trimString_ ignored
+Warning! W1027: file /home/jimchan/Desktop/workingOS/build/stage2/c/filenameConversion.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/filenameConversion.c): redefinition of convertToFileDirectoryName_ ignored
+Executable Image: /home/jimchan/Desktop/workingOS/build/stage2.bin
+creating a RAW Binary Image executable
+
+
+                        +------------+
+                        |   Groups   |
+                        +------------+
+
+Group                           Address              Size
+=====                           =======              ====
+
+DGROUP                          00002468             00000336
+
+
+
+                        +--------------+
+                        |   Segments   |
+                        +--------------+
+
+Segment                Class          Group          Address         Size
+=======                =====          =====          =======         ====
+
+_ENTRY                 CODE           AUTO           00000000        00000023
+_TEXT                  CODE           AUTO           00000023        00002444
+CONST                  DATA           DGROUP         00002468        00000212
+CONST2                 DATA           DGROUP         0000267a        00000011
+_DATA                  DATA           DGROUP         0000268c        0000010a
+_BSS                   BSS            DGROUP         00002796        00000008
+
+
+                        +----------------+
+                        |   Memory Map   |
+                        +----------------+
+
+* = unreferenced symbol
++ = symbol only referenced locally
+
+Address        Symbol
+=======        ======
+
+Module: /home/jimchan/Desktop/workingOS/build/stage2/asm/x86.obj(x86.asm)
+00000023       __U4D
+0000004a       __U4M
+00000064       _x86_div64_32
+00000092       _x86_Video_Write_Character_Teletype
+000000a4       _x86_Disk_Reset
+000000b9       _x86_Disk_Read
+000000f0       _x86_Disk_Write
+00000127       _x86_Disk_GetDriveParams
+Module: /home/jimchan/Desktop/workingOS/build/stage2/asm/main.obj(main.asm)
+00000000       entry
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/fileConversion.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/fileConversion.c)
+0000016b       convertToFATFilename_
+0000024b       trimString_
+000002ab       convertToFileDirectoryName_
+00000323       convertToFilename_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/string.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/string.c)
+000003dd       strchr_
+00000438       strcpy_
+000004ac       strlen_
+000004ed       strncpy_
+0000057a       strcat_
+000005cf+      strncat_
+00000638       strcmp_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/fat.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/fat.c)
+000006b0+      FAT_ReadBootSector_
+000006e4+      FAT_ReadFat_
+00000728       FAT_Initialize_
+00000973+      FAT_ClusterToLba_
+000009c9+      FAT_OpenEntry_
+00000ba4+      FAT_NextCluster_
+00000c2d       FAT_Read_
+00000fb7       FAT_Write_
+00001056       FAT_ReadEntry_
+000010af       FAT_Close_
+0000112d       FAT_FindFile_
+000011b5       FAT_Open_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/main.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/main.c)
+00001335+      printLocation_
+00001358+      test1_
+000013c7+      test2_
+00001427       _cstart_
+00002690+      _currentWorkingDirectoryPath
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/memory.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/memory.c)
+00001478       memcpy_
+000014f0       memset_
+0000154f       memcmp_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/ctype.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/ctype.c)
+000015cc+      islower_
+0000160a       toupper_
+00001652       isspace_
+00001688+      isupper_
+000016c6       tolower_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/test.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/test.c)
+000018e0+      main_
+0000194b+      f_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/stdio.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/stdio.c)
+00001971       putc_
+00001998+      puts_
+000019cf       _printf
+00001c33+      printf_number_
+0000267a+      _g_HexChars
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/disk.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/disk.c)
+00001e77       DISK_Initialize_
+00001eed+      DISK_LBA2CHS_
+00001fa0       DISK_ReadSectors_
+0000203d       DISK_WriteSectors_
+Module: /home/jimchan/Desktop/workingOS/build/stage2/c/shellCmd.obj(/home/jimchan/Desktop/workingOS/src/bootloader/stage2/shellCmd.c)
+000020da       command_ls_
+000021d7       command_cd_
+000022bc       command_cat_
+000023ca       command_echo_
+
+
+                        +---------------------+
+                        |   Module Segments   |
+                        +---------------------+
+
+! = 32-bit segment
+c = initialized communal data
+
+Module          Segment               Class           Address         Size
+======          =======               =====           =======         ====
+
+x86.asm         _TEXT                 CODE           00000023         00000148
+main.asm        _ENTRY                CODE           00000000         00000023
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/fileConversion.c
+                _TEXT                 CODE           0000016b         00000272
+                CONST                 DATA           00002468         00000000
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           0000268c         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/string.c
+                _TEXT                 CODE           000003dd         000002d3
+                CONST                 DATA           00002468         00000000
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           0000268c         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/fat.c
+                _TEXT                 CODE           000006b0         00000c85
+                CONST                 DATA           00002468         00000105
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           0000268c         00000004
+                _BSS                  BSS            00002796         00000008
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/main.c
+                _TEXT                 CODE           00001335         00000143
+                CONST                 DATA           0000256e         000000a4
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           00002690         00000100
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/memory.c
+                _TEXT                 CODE           00001478         00000154
+                CONST                 DATA           00002612         00000000
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           00002790         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/ctype.c
+                _TEXT                 CODE           000015cc         00000142
+                CONST                 DATA           00002612         00000000
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           00002790         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/filenameConversion.c
+                _TEXT                 CODE           0000170e         000001d2
+                CONST                 DATA           00002612         00000000
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           00002790         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/test.c
+                _TEXT                 CODE           000018e0         00000091
+                CONST                 DATA           00002612         00000004
+                CONST2                DATA           0000267a         00000000
+                _DATA                 DATA           00002790         00000006
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/stdio.c
+                _TEXT                 CODE           00001971         00000506
+                CONST                 DATA           00002616         00000000
+                CONST2                DATA           0000267a         00000011
+                _DATA                 DATA           00002796         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/disk.c
+                _TEXT                 CODE           00001e77         00000263
+                CONST                 DATA           00002616         00000000
+                CONST2                DATA           0000268c         00000000
+                _DATA                 DATA           00002796         00000000
+/home/jimchan/Desktop/workingOS/src/bootloader/stage2/shellCmd.c
+                _TEXT                 CODE           000020da         0000038d
+                CONST                 DATA           00002616         00000064
+                CONST2                DATA           0000268c         00000000
+                _DATA                 DATA           00002796         00000000
+Warning! W1014: stack segment not found
+
+
+                        +-----------------------+
+                        |   Linker Statistics   |
+                        +-----------------------+
+
+Stack size:  0200 (512.)
+Memory size:  279e (10142.)
+Entry point address: 00000000
+Link time: 00:00.00

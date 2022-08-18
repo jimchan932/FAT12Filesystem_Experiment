@@ -1,0 +1,6 @@
+array of pointers for array of strings
+
+char *array[] = {"hello world", "i am jim"};
+
+
+

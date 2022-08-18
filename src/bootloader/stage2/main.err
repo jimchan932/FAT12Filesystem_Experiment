@@ -1,0 +1,4 @@
+main.c(27): Warning! E1179: Parameter 4, type qualifier mismatch
+main.c(27): Note! I2003: source conversion type is 'char const *'
+main.c(27): Note! I2004: target conversion type is 'char *'
+main.c(27): Note! I2002: 'command_echo' defined in: shellCmd.h(13)

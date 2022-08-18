@@ -1,0 +1,32 @@
+       
+    g_Data->BS.BootSector.BootJumpInstruction[0] = 0xeb;
+    g_Data->BS.BootSector.BootJumpInstruction[1] = 0x3c;
+    g_Data->BS.BootSector.BootJumpInstruction[2] = 0x90;
+    uint8_t oemIdentifier[8] = {0x4d, 0x53, 0x57, 0x49, 0x4e, 0x34, 0x2e, 0x31};
+    for(int i = 0; i < 8; i++)
+	g_Data->BS.BootSector.OemIdentifer[i] = oemIdentifier[i]; 
+    g_Data->BS.BootSector.BytesPerSector = 512;
+    g_Data->BS.BootSector.SectorsPerCluster = 1;
+    g_Data->BS.BootSector.ReservedSectors = 1;
+    g_Data->BS.BootSector.FatCount = 2;
+    g_Data->BS.BootSector.DirEntryCount = 0xe0;
+    g_Data->BS.BootSector.TotalSectors = 2880;
+    g_Data->BS.BootSector.MediaDescriptorType = 0xf0;
+    g_Data->BS.BootSector.SectorsPerFat = 9;
+    g_Data->BS.BootSector.SectorsPerTrack = 18;
+    g_Data->BS.BootSector.Heads = 2;
+    g_Data->BS.BootSector.HiddenSectors = 0;
+    g_Data->BS.BootSector.LargeSectorCount = 0;
+
+    // extended boot record
+    g_Data->BS.BootSector.DriveNumber = 0;
+    g_Data->BS.BootSector._Reserved = 0;
+    g_Data->BS.BootSector.Signature = 0x29;
+    g_Data->BS.BootSector.VolumeId = 12345678;
+    uint8_t volumeLabel[] = {0x4e, 0x41, 0x4e, 0x4f, 0x42, 0x59, 0x54, 0x45, 0x20, 0x4f, 0x53}; 
+   
+    memcpy(g_Data->BS.BootSector.VolumeLabel, volumeLabel, 11*sizeof(uint8_t));
+    uint8_t systemId[] = {0x46, 0x41, 0x54, 0x31, 0x20, 0x20, 0x20};
+    //for(int i =0; i < 8; i++)
+    memcpy(g_Data->BS.BootSector.SystemId, systemId, 8*sizeof(uint8_t)); 
+  
